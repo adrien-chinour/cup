@@ -1,13 +1,15 @@
 <div align="center">
 
-# cup
+# cup **(under development 🚧)**
 
 Run **docker compose** from everywhere.
 
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=adrien-chinour_cup&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=adrien-chinour_cup)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=adrien-chinour_cup&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=adrien-chinour_cup)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=adrien-chinour_cup&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=adrien-chinour_cup)
+
 </div>
 
-> [!WARNING]
-> Project under development 👷🚧
 
 ## Usage
 
