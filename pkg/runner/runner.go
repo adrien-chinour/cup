@@ -12,11 +12,13 @@ import (
 func Run(action string, project string) {
 	path, err := finder.FindProject(project)
 	if err != nil {
+		fmt.Println(err)
 		os.Exit(1)
 	}
 
 	err = runCommand(path, action)
 	if err != nil {
+		fmt.Println(err)
 		return
 	}
 }

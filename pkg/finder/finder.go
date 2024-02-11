@@ -2,18 +2,19 @@ package finder
 
 import (
 	"errors"
+	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 func FindProject(name string) (string, error) {
-	// TODO use env variable or custom dotfile for this
-	// TODO maybe a recursive version but seems more difficult (don't want to stuck in a node_module folder..)
-	from := []string{
-		"/home/adrien/code/adrien-chinour",
-		"/home/adrien/code/phpimages",
-		"/home/adrien/code/boxop",
+	from, err := resolveFolders()
+	if err != nil {
+		return "", err
 	}
+
+	fmt.Println(from)
 
 	for _, root := range from {
 		projectPath := ""
@@ -35,4 +36,13 @@ func FindProject(name string) (string, error) {
 	}
 
 	return "", errors.New("project not found")
+}
+
+func resolveFolders() ([]string, error) {
+	env := os.Getenv("CUPDIR")
+	if env == "" {
+		return nil, errors.New("CUPDIR is not defined")
+	}
+
+	return strings.Split(env, ":"), nil
 }
