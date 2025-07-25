@@ -2,7 +2,6 @@ package finder
 
 import (
 	"errors"
-	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -14,11 +13,19 @@ func FindProject(name string) (string, error) {
 		return "", err
 	}
 
-	fmt.Println(from)
-
 	for _, root := range from {
 		projectPath := ""
+		rootDepth := depth(root)
+
 		err := filepath.WalkDir(root, func(path string, d os.DirEntry, err error) error {
+			if !d.IsDir() {
+				return nil
+			}
+
+			if depth(path)-rootDepth > 2 {
+				return filepath.SkipDir
+			}
+
 			if d.Name() == name && d.IsDir() {
 				projectPath = path
 			}
@@ -45,4 +52,8 @@ func resolveFolders() ([]string, error) {
 	}
 
 	return strings.Split(env, ":"), nil
+}
+
+func depth(path string) int {
+	return len(strings.Split(filepath.Clean(path), string(os.PathSeparator)))
 }

@@ -39,8 +39,9 @@ func runCommand(projectPath string, action string) error {
 
 	cmd := exec.Command("docker", args...)
 	cmd.Dir = projectPath
-
-	fmt.Println(fmt.Sprintf("Run %v action for project %v", action, projectPath))
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	cmd.Stdin = os.Stdin
 
 	return cmd.Run()
 }
